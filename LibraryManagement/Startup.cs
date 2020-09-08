@@ -26,7 +26,7 @@ namespace LibraryManagement
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<LibraryDbContext>((options) => {
-                options.UseSqlServer(configuration.GetConnectionString("ITI"));//["connectionstring:ITI"]);
+                options.UseSqlServer(configuration.GetConnectionString("Library"));//["connectionstring:ITI"]);
             });
             services.AddControllersWithViews();
         }
