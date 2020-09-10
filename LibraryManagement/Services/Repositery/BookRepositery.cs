@@ -1,4 +1,5 @@
 ﻿using LibraryManagement.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,17 +15,22 @@ namespace LibraryManagement.Services.Repositery
         }
         public IEnumerable<Book> FindWithAuthor(Func<Book, bool> predicate)
         {
-            throw new NotImplementedException();
+            return context.Books
+                 .Include(a => a.Auther)
+                 .Where(predicate);
         }
 
         public IEnumerable<Book> FindWithAuthorAndBorrower(Func<Book, bool> predicate)
         {
-            throw new NotImplementedException();
+            return context.Books
+                   .Include(a => a.Auther)
+                   .Include(a => a.Customer)
+                   .Where(predicate);
         }
 
         public IEnumerable<Book> GetAllWithAuthor()
         {
-            throw new NotImplementedException();
+            return context.Books.Include(a => a.Auther);
         }
     }
 }

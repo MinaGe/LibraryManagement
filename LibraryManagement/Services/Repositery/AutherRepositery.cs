@@ -1,4 +1,5 @@
 ﻿using LibraryManagement.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,59 +13,21 @@ namespace LibraryManagement.Services.Repositery
         {
 
         }
-        public int Count(Func<Auther, bool> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Create(Auther entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(Auther entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Auther> Find(Func<Auther, bool> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
+      
         public IEnumerable<Auther> GetAllWithBooks()
         {
-            throw new NotImplementedException();
+            return context.Authers.Include(a => a.Books);
         }
 
         public Auther GetWithBooks(int id)
         {
-            throw new NotImplementedException();
+            return context.Authers.Where(a => a.AutherId == id).Include(a => a.Books).FirstOrDefault();
         }
 
-        public void Update(Auther entity)
-        {
-            throw new NotImplementedException();
-        }
+       
 
-        IEnumerable<Auther> IRepositery<Auther>.GetAll()
-        {
-            throw new NotImplementedException();
-        }
+      
 
-        IEnumerable<Auther> IAutherReositery.GetAllWithBooks()
-        {
-            throw new NotImplementedException();
-        }
-
-        Auther IRepositery<Auther>.GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        Auther IAutherReositery.GetWithBooks(int id)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

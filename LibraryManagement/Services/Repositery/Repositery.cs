@@ -1,4 +1,5 @@
 ﻿using LibraryManagement.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,37 +18,40 @@ namespace LibraryManagement.Services.Repositery
         protected void Save() => context.SaveChanges();
         public int Count(Func<T, bool> predicate)
         {
-            throw new NotImplementedException();
+            return context.Set<T>().Where(predicate).Count();
         }
 
         public void Create(T entity)
         {
-            throw new NotImplementedException();
+            context.Add(entity);
+            Save();
         }
 
         public void Delete(T entity)
         {
-            throw new NotImplementedException();
+            context.Remove(entity);
+            Save();
         }
 
         public IEnumerable<T> Find(Func<T, bool> predicate)
         {
-            throw new NotImplementedException();
+            return context.Set<T>().Where(predicate);
         }
 
         public IEnumerable<T> GetAll()
         {
-            throw new NotImplementedException();
+            return context.Set<T>();
         }
 
         public T GetById(int id)
         {
-            throw new NotImplementedException();
+            return context.Set<T>().Find(id);
         }
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            context.Entry(entity).State = EntityState.Modified;
+            Save();
         }
     }
 }
