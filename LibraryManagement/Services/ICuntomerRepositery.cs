@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Services
 {
-    interface ICuntomerRepositery:IRepositery<Customer>  {
+  public interface ICuntomerRepositery :IRepositery<Customer>  {
     }
 }
