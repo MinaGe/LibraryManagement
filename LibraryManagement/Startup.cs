@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LibraryManagement.Models;
+using LibraryManagement.Services;
+using LibraryManagement.Services.Repositery;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +31,13 @@ namespace LibraryManagement
                 options.UseSqlServer(configuration.GetConnectionString("Library"));//["connectionstring:ITI"]);
             });
             services.AddControllersWithViews();
+           
+            services.AddTransient<ICuntomerRepositery, CustomerRepositery>();
+
+            services.AddTransient<IAutherReositery, AutherRepositery>();
+
+            services.AddTransient<IBookRepositery, BookRepositery>();
+          
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
