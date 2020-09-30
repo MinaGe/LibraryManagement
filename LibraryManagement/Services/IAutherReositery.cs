@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Services
 {
-    public interface IAutherReositery:IRepositery<Auther>
+    public interface IAutherReositery:IRepositery<Models.Auther>
     {
-        IEnumerable<Auther> GetAllWithBooks();
-        Auther GetWithBooks(int id);
+        IEnumerable<Models.Auther> GetAllWithBooks();
+        Models.Auther GetWithBooks(int id);
+        void Update(Controllers.Auther author);
     }
 }

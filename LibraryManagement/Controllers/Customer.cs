@@ -54,5 +54,17 @@ namespace LibraryManagement.Controllers
             cuntomerRepositery.Create(customer);
             return RedirectToAction("List");
         }
+        public IActionResult Update(int id )
+        {
+            var customer = cuntomerRepositery.GetById(id);
+            return View(customer);
+
+        }
+        [HttpPost]
+        public IActionResult Update(Customer customer)
+        {
+            cuntomerRepositery.Update(customer);
+            return RedirectToAction("List");
+        }
     }
 }
