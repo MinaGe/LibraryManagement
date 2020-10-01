@@ -7,27 +7,26 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Services.Repositery
 {
-    public class AutherRepositery : Repositery<Auther>, IAutherReositery
+    public class AutherRepositery : Repositery<Models.Auther>, IAutherReositery
     {
         public AutherRepositery(LibraryDbContext context):base(context)
         {
 
         }
       
-        public IEnumerable<Auther> GetAllWithBooks()
+        public IEnumerable<Models.Auther> GetAllWithBooks()
         {
             return context.Authers.Include(a => a.Books);
         }
 
-        public Auther GetWithBooks(int id)
+        public Models.Auther GetWithBooks(int id)
         {
             return context.Authers.Where(a => a.AutherId == id).Include(a => a.Books).FirstOrDefault();
         }
 
-       
-
-      
-
-       
+        public void Update(Controllers.Auther author)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LibraryManagement.Services;
 using LibraryManagement.Services.Repositery;
+using LibraryManagement.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryManagement.Controllers
@@ -60,7 +61,7 @@ namespace LibraryManagement.Controllers
                 return View(authorVM);
             }
 
-            _authorRepository.Create(authorVM.Author);
+            _Autherrepositery.Create(authorVM.Author);
 
             if (!String.IsNullOrEmpty(authorVM.Referer))
             {
@@ -72,9 +73,9 @@ namespace LibraryManagement.Controllers
 
         public IActionResult Delete(int id)
         {
-            var author = _authorRepository.GetById(id);
+            var author = _Autherrepositery.GetById(id);
 
-            _authorRepository.Delete(author);
+            _Autherrepositery.Delete(author);
 
             return RedirectToAction("List");
         }
