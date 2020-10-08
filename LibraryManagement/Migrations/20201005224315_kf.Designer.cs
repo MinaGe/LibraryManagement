@@ -4,14 +4,16 @@ using LibraryManagement.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LibraryManagement.Migrations
 {
     [DbContext(typeof(LibraryDbContext))]
-    partial class LibraryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201005224315_kf")]
+    partial class kf
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,6 +46,9 @@ namespace LibraryManagement.Migrations
                     b.Property<int>("AutherId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("CountryId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("CustomerId")
                         .HasColumnType("int");
 
@@ -54,7 +59,7 @@ namespace LibraryManagement.Migrations
 
                     b.HasIndex("AutherId");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("CountryId");
 
                     b.ToTable("Books");
                 });
@@ -84,7 +89,7 @@ namespace LibraryManagement.Migrations
 
                     b.HasOne("LibraryManagement.Models.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerId");
+                        .HasForeignKey("CountryId");
                 });
 #pragma warning restore 612, 618
         }

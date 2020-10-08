@@ -17,6 +17,7 @@ namespace LibraryManagement.Controllers
         {
             _Autherrepositery = autherRepositery;
         }
+        [Route("Auther")]
         public IActionResult List()
         {
             var auther = _Autherrepositery.GetAllWithBooks();

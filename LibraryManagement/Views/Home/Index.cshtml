@@ -2,7 +2,42 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@model LibraryManagement.ViewModels.HomeViewModel
+@{
+    int availableBooks = Model.BookCount - Model.LendBookCount;
+}
+
+<h1>Library management dashboard</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Customers Count
+            </div>
+            <div class="panel-body">
+                There are @Model.CustomerCount customers
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Authors Count
+            </div>
+            <div class="panel-body">
+                There are @Model.AuthorCount authors
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Books count
+            </div>
+            <div class="panel-body">
+                There are @availableBooks books available out of @Model.BookCount books
+            </div>
+        </div>
+    </div>
 </div>

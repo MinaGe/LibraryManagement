@@ -21,7 +21,7 @@ namespace LibraryManagement.Controllers
         [Route("Lend")]
         public IActionResult List()
         {
-            var availablebooks = bookRepositery.FindWithAuthor(x => x.CustomerId == 0);
+            var availablebooks = bookRepositery.FindWithAuthor(x => x.CustomerId == null);
             if (availablebooks.Count()==0)
             {
                 return View("Empty");
@@ -43,7 +43,7 @@ namespace LibraryManagement.Controllers
         public IActionResult LendBook(LendViewModel lendViewModel)
         {
             var book = bookRepositery.GetById(lendViewModel.book.BookId);
-            var customer = customerRepositery.GetById(lendViewModel.book.CustomerId);
+            var customer = customerRepositery.GetById((int)lendViewModel.book.CustomerId);
             book.Customer = customer;
             bookRepositery.Update(book);
             return RedirectToAction("List");

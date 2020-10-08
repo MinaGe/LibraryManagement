@@ -31,7 +31,7 @@ namespace LibraryManagement.Controllers
             // create home view model
             var homeVM = new HomeViewModel()
             {
-                AuthorCount = _authorRepository.Count(x => true),
+                AuthorCount = _authorRepository.Count(x=>true),
                 CustomerCount = _customerRepository.Count(x => true),
                 BookCount = _bookRepository.Count(x => true),
                 LendBookCount = _bookRepository.Count(x => x.Customer != null)

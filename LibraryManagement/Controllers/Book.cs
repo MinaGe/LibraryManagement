@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LibraryManagement.Services;
 using LibraryManagement.ViewModels;
+using LibraryManagement.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryManagement.Controllers
@@ -18,14 +19,15 @@ namespace LibraryManagement.Controllers
             this.bookRepositery = bookRepositery;
             this.autherReositery = autherReositery;
         }
+        [Route("Book")]
         public IActionResult List(int? authorId, int? borrowerId)
         {
             if (authorId == null && borrowerId == null)
             {
                 // show all books
-                var books = bookRepositery.GetAllWithAuthor();
+                var booksk = bookRepositery.GetAllWithAuthor();
                 // check books
-                return CheckBooks((IEnumerable<Book>)books);
+                return CheckBooks(booksk);
             }
             else if (authorId != null)
             {
@@ -49,7 +51,7 @@ namespace LibraryManagement.Controllers
                 var books = bookRepositery
                     .FindWithAuthorAndBorrower(book => book.CustomerId == borrowerId);
                 // check borrower books
-                return CheckBooks((IEnumerable<Book>)books);
+                return CheckBooks(books);
             }
             else
             {
@@ -60,7 +62,7 @@ namespace LibraryManagement.Controllers
 
    
 
-        public IActionResult CheckBooks(IEnumerable<Book> books)
+        public IActionResult CheckBooks(IEnumerable<LibraryManagement.Models.Book>books)
         {
             if (books.Count() == 0)
             {
@@ -93,10 +95,10 @@ namespace LibraryManagement.Controllers
 
             return RedirectToAction("List");
         }
-        public IActionResult Update (int BookId)
+        public IActionResult Update (int id)
         {
             var bookvm = new BookViewModel()
-            { Book = bookRepositery.GetById(BookId), Authers = autherReositery.GetAll() };
+            { Book = bookRepositery.GetById(id), Authers = autherReositery.GetAll() };
             return View(bookvm);
           
         }
